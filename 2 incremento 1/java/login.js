@@ -1,6 +1,6 @@
 /**
  * SGG - Sistema de Gestión de Gastos
- * Módulo exclusivo de Autenticación e Inicio de Sesión
+ * Módulo exclusivo de Autenticación con Usuario de Prueba Precargado
  */
 
 // --- ELEMENTOS DEL DOM (SELECTORES CENTRALIZADOS) ---
@@ -27,9 +27,27 @@ const dashUsername = document.getElementById('dashUsername');
 
 // --- MANEJO DE ESTADO LOCAL (LOCALSTORAGE) ---
 const getStoredUsers = () => JSON.parse(localStorage.getItem('sgg_users')) || [];
+const setStoredUsers = (users) => localStorage.setItem('sgg_users', JSON.stringify(users));
 const getActiveSession = () => JSON.parse(localStorage.getItem('sgg_session'));
 const setActiveSession = (userSession) => localStorage.setItem('sgg_session', JSON.stringify(userSession));
 const removeActiveSession = () => localStorage.removeItem('sgg_session');
+
+// --- PRECARGA DE USUARIOS PARA PRUEBAS ---
+function inicializarUsuariosDemo() {
+    const usuariosActuales = getStoredUsers();
+    
+    // Verificamos si el usuario de prueba ya existe para no duplicarlo
+    const existeUsuarioDemo = usuariosActuales.some(u => u.username.toLowerCase() === 'usuario188');
+    
+    if (!existeUsuarioDemo) {
+        usuariosActuales.push({
+            username: 'usuario188',
+            password: 'usuario188'
+        });
+        setStoredUsers(usuariosActuales);
+        console.log("Usuario de prueba 'usuario188' precargado exitosamente.");
+    }
+}
 
 // --- MOTOR DE NAVEGACIÓN ---
 function switchView(targetViewKey) {
@@ -54,7 +72,11 @@ function showMsg(element, message) {
     }
 }
 
-// --- INICIALIZACIÓN DE LA SESIÓN ---
+// --- INICIALIZACIÓN DE LA APLICACIÓN ---
+// 1. Cargamos el usuario de prueba de manera automática
+inicializarUsuariosDemo();
+
+// 2. Comprobamos si hay una sesión activa de antes
 const currentSession = getActiveSession();
 if (currentSession) {
     if (dashUsername) dashUsername.textContent = currentSession.username;
