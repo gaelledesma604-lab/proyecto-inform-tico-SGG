@@ -1,0 +1,227 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO (TEMA INDUSTRIAL POR DEFECTO)
+   ========================================================================== */
+:root {
+    --bg-main: #120e1e;
+    --bg-card: #1c162e;
+    --border-color: #3d2f5c;
+    --text-main: #f1ecfa;
+    --text-muted: #a698c2;
+    --primary: #7b2cbf;
+    --primary-hover: #9d4edd;
+    --success: #00b4d8;
+    --success-bg: rgba(0, 180, 216, 0.15);
+    --error: #ff4d6d;
+    --error-bg: rgba(255, 77, 109, 0.15);
+    
+    --texture: linear-gradient(30deg, #161124 12%, transparent 12.5%, transparent 87%, #161124 87.5%, #161124),
+               linear-gradient(150deg, #161124 12%, transparent 12.5%, transparent 87%, #161124 87.5%, #161124),
+               linear-gradient(30deg, #161124 12%, transparent 12.5%, transparent 87%, #161124 87.5%, #161124),
+               linear-gradient(150deg, #161124 12%, transparent 12.5%, transparent 87%, #161124 87.5%, #161124),
+               linear-gradient(60deg, #1d1730 25%, transparent 25.5%, transparent 75%, #1d1730 75.5%, #1d1730),
+               linear-gradient(60deg, #1d1730 25%, transparent 25.5%, transparent 75%, #1d1730 75.5%, #1d1730);
+    --texture-size: 20px 35px;
+}
+
+/* ==========================================================================
+   ESTILOS GENERALES Y RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: var(--texture);
+    background-size: var(--texture-size);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.global-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary-hover);
+    font-weight: 400;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   COMPONENTES: TARJETAS (CARDS)
+   ========================================================================== */
+.auth-card, .dashboard-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--primary);
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-card {
+    max-width: 700px;
+}
+
+h2, h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* FORMULARIOS */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-hover);
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.25);
+}
+
+/* BOTONES */
+.btn {
+    width: 100%;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary { background-color: var(--primary); color: #fff; }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-danger { background-color: var(--error); color: #fff; width: auto; padding: 0.5rem 1rem;}
+.btn-danger:hover { background-color: #e63946; }
+
+/* MENSAJES DE RESPUESTA */
+.msg {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+}
+
+.msg-error {
+    background-color: var(--error-bg);
+    border-left: 4px solid var(--error);
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   PANTALLA DE BIENVENIDA (DASHBOARD)
+   ========================================================================== */
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.info-item {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.info-item .label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.info-item .val {
+    font-weight: 600;
+}
+
+.text-success { color: #10b981; }
+
+@media (max-width: 480px) {
+    .global-header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
